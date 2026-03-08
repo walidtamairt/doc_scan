@@ -18,7 +18,8 @@
 
 - Walid T.
 - Rami Z.
-
+- Younes R.
+- Kamel B.
 ---
 
 ## Structure du projet
