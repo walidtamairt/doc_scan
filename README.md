@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 📄 DocScan
 
 ## 🌍 Transformez vos documents en texte avec facilité !
@@ -77,3 +78,6 @@ python -m http.server 5500
 ```bash
 http://localhost:5500
 ```
+=======
+# doc_scan
+>>>>>>> 0e98ab6676975d1b4e575d910734c85cf4d40ebb
