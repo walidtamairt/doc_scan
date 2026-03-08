@@ -2,36 +2,84 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>DocScan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DocScan — OCR Intelligent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div class="container">
-  <h1>DocScan</h1>
-  <p>Transformez vos documents en texte</p>
+  <header>
+    <div class="logo">DocScan<span class="dot">.</span></div>
+    <p class="tagline">Extraction de texte par IA</p>
+  </header>
 
-  <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.pdf" hidden />
+  <main class="container">
 
-  <button onclick="document.getElementById('fileInput').click()">
-    📤 Importer un fichier
-  </button>
+    <!-- ONGLETS -->
+    <div class="tabs">
+      <button class="tab active" data-tab="upload">📤 Fichier</button>
+      <button class="tab" data-tab="url">🔗 URL</button>
+    </div>
 
-  <p id="fileName"></p>
+    <!-- PANNEAU FICHIER -->
+    <div class="tab-panel" id="panel-upload">
+      <div class="drop-zone" id="dropZone">
+        <div class="drop-icon">📄</div>
+        <p class="drop-label">Glissez un fichier ici</p>
+        <p class="drop-sub">ou</p>
+        <button class="btn-import" onclick="document.getElementById('fileInput').click()">
+          Choisir un fichier
+        </button>
+        <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.pdf" hidden />
+        <p id="fileName" class="file-name"></p>
+      </div>
+    </div>
 
-  <button id="analyzeBtn">🔍 Analyser le document</button>
+    <!-- PANNEAU URL -->
+    <div class="tab-panel hidden" id="panel-url">
+      <div class="url-zone">
+        <div class="drop-icon">🔗</div>
+        <p class="drop-label">URL d'une image publique</p>
+        <p class="drop-sub">JPEG, PNG ou BMP accessible sans authentification</p>
+        <input
+          type="text"
+          id="urlInput"
+          class="url-input"
+          placeholder="https://exemple.com/document.jpg"
+        />
+      </div>
+    </div>
 
-  <!-- 🌍 Langue détectée -->
-  <p id="languageDisplay"></p>
+    <!-- Bouton analyser -->
+    <button id="analyzeBtn" class="btn-analyze" disabled>
+      <span class="btn-text">Analyser</span>
+      <span class="btn-loader" hidden>⏳ Analyse en cours…</span>
+    </button>
 
-  <!-- 📄 Texte OCR -->
-  <textarea id="resultText" placeholder="Texte extrait..." rows="10"></textarea>
+    <!-- Résultat -->
+    <div id="resultSection" class="result-section hidden">
+      <div class="result-meta">
+        <span id="languageDisplay" class="lang-badge"></span>
+        <span id="charCount" class="char-count"></span>
+      </div>
+      <textarea id="resultText" placeholder="Le texte extrait apparaîtra ici…" rows="10" readonly></textarea>
+      <div class="actions">
+        <button id="editBtn" class="btn-secondary">✏️ Éditer</button>
+        <button id="copyBtn" class="btn-secondary">📋 Copier</button>
+        <button id="downloadBtn" class="btn-secondary">💾 Télécharger</button>
+      </div>
+    </div>
 
-  <div class="actions">
-    <button id="copyBtn">📋 Copier</button>
-    <button id="downloadBtn">💾 Télécharger</button>
-  </div>
-</div>
+    <!-- Message d'erreur -->
+    <div id="errorBox" class="error-box hidden"></div>
+
+  </main>
+
+  <footer>
+    <p>Propulsé par Azure Computer Vision · <span id="year"></span></p>
+  </footer>
 
 <script src="script.js"></script>
 </body>
